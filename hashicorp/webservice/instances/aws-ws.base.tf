@@ -13,17 +13,17 @@
 # limitations under the License.
 
 variable "aws_deploy_region" {
-  type = string
+  type        = string
   description = "The EC2 region injected through inversion of control"
 }
 
 variable "ami_name" {
-  type = string
+  type        = string
   description = "AMI image name to deploy"
 }
 
 variable "instance_type" {
-  type    = string
+  type        = string
   description = "EC2 instance types defined in https://aws.amazon.com/ec2/instance-types/"
 
   validation {
@@ -33,14 +33,14 @@ variable "instance_type" {
 }
 
 variable "ec2_instance_name" {
-  type = string
+  type        = string
   description = "EC2 instance name"
 }
 
 # https://github.com/hashicorp/packer/issues/11354
 # https://developer.hashicorp.com/terraform/language/expressions/types#list
 variable "security_groups" {
-  type = list(string)
+  type        = list(string)
   description = "EC2 Security Groups"
 }
 
@@ -58,16 +58,13 @@ provider "aws" {
   region = var.aws_deploy_region
 }
 
-variable "init_script_path" {
-  value = join("", ["../../scripts/", var.init_script])
-}
 data "template_file" "aws-ws-init" {
-  template = "${file(${var.init_script_path})}"
+  template = file("../../scripts/${locals.init_script}")
 }
 
 data "aws_ami" "latest-ws" {
   most_recent = true
-  owners = ["899075777617"]
+  owners      = ["899075777617"]
 
   filter {
     name   = "name"
@@ -81,13 +78,13 @@ data "aws_ami" "latest-ws" {
 }
 
 resource "aws_instance" "aws-ws" {
-  ami = "${data.aws_ami.latest-ws.id}"
-  instance_type = "${var.instance_type}"
+  ami           = data.aws_ami.latest-ws.id
+  instance_type = var.instance_type
   tags = {
     Name = "${var.ec2_instance_name}"
   }
 
   security_groups = var.security_groups
 
-  user_data = "${data.template_file.aws-ws-init.rendered}"
+  user_data = data.template_file.aws-ws-init.rendered
 }
