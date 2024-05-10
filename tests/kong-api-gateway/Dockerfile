@@ -19,3 +19,6 @@ LABEL maintainer="Paion Data" \
 RUN apt update && \
     apt upgrade -y && \
     apt install -y software-properties-common wget curl sudo 
+
+COPY scripts/ali-kong-tf-init.sh /kong-init.sh
+RUN chmod +x /kong-init.sh
