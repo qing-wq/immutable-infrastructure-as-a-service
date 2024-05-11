@@ -4,8 +4,6 @@ variables {
 }
 
 run "setup" {
-  command = apply
-
   module {
     source = "./tests/setup"
   }
