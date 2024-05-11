@@ -6,7 +6,6 @@ all_success=true
 for port in "${ports[@]}"
 do
   if ! nc -z -w 5 localhost $port; then
-    echo "Port $port is not open"
     all_success=false
   fi
 done

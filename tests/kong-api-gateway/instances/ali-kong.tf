@@ -22,11 +22,6 @@ variable "docker_container_name" {
   description = "The name of the container"
 }
 
-variable "image_home_dir" {
-  type        = string
-  description = "value of home directory"
-}
-
 resource "docker_image" "kong-gateway-image" {
   name         = var.docker_image
   keep_locally = true
@@ -35,7 +30,7 @@ resource "docker_image" "kong-gateway-image" {
 resource "docker_container" "kong-container" {
   image   = docker_image.kong-gateway-image.image_id
   name    = var.docker_container_name
-  command = ["${var.image_home_dir}/kong-init.sh"]
+  command = ["/kong-init.sh"]
   privileged = true
 
   volumes {
@@ -46,13 +41,13 @@ resource "docker_container" "kong-container" {
 
   # upload file before contain run
   upload {
-    file       = "${var.image_home_dir}/kong-init.sh"
+    file       = "/kong-init.sh"
     source     = "../scripts/ali-kong-tf-init.sh"
     executable = true
   }
 
   upload {
-    file       = "${var.image_home_dir}/docker-kong/compose/docker-compose.yml"
+    file       = "/docker-kong/compose/docker-compose.yml"
     source     = "../docker-compose.yml"
     executable = true
   }
