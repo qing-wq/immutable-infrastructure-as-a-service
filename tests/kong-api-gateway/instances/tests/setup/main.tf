@@ -20,4 +20,3 @@ output "admin_api_status" {
 output "http_port_status" {
   value = data.external.all.result.http_status
 }
-
