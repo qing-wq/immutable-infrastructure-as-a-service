@@ -29,20 +29,45 @@ variable "image_home_dir" {
 
 resource "docker_image" "kong-gateway-image" {
   name         = var.docker_image
-  keep_locally = false
+  keep_locally = true
 }
 
 resource "docker_container" "kong-container" {
-  image = docker_image.kong-gateway-image.image_id
-  name  = var.docker_container_name
+  image   = docker_image.kong-gateway-image.image_id
+  name    = var.docker_container_name
+  command = ["${var.image_home_dir}/kong-init.sh"]
+  # entrypoint = ["/bin/sh"]
+
+  # must_run = false
+  privileged = true
+
+  volumes {
+    container_path = "/var/run/docker.sock"
+    host_path      = "/var/run/docker.sock"
+    read_only      = true
+  }
 
   # upload file before contain run
   upload {
     file       = "${var.image_home_dir}/kong-init.sh"
-    source     = "../script/ali-kong-tf-init.sh"
+    source     = "../scripts/ali-kong-tf-init.sh"
+    executable = true
+  }
+
+  upload {
+    file       = "${var.image_home_dir}/docker-kong/compose/docker-compose.yml"
+    source     = "../docker-compose.yml"
     executable = true
   }
 }
+
+# data "external" "ui_status" {
+#   program = ["bash", "${path.module}/../scripts/test-kong-ui.sh"]
+# }
+
+# output "ui_status" {
+#   value = data.external.ui_status.result.ui_status
+# }
 
 terraform {
   required_providers {

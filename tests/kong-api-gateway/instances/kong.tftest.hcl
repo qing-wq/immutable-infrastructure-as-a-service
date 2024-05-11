@@ -11,7 +11,17 @@ run "setup" {
   }
 
   assert {
-    condition     = data.external.ui_status.result.ui_status == "200"
+    condition     = output.ui_status == "200"
+    error_message = "error assert"
+  }
+
+  assert {
+    condition     = output.admin_api_status == "success"
+    error_message = "error assert"
+  }
+
+  assert {
+    condition     = output.http_port_status == "success"
     error_message = "error assert"
   }
 }
