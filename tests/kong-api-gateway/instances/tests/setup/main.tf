@@ -1,13 +1,13 @@
 data "external" "ui_status" {
-  program = ["bash", "${path.module}/../../scripts/test-kong-ui.sh"]
+  program = ["bash", "${path.module}/../../../scripts/test-kong-ui.sh"]
 }
 
 data "external" "admin_api_status" {
-  program = ["bash", "${path.module}/../../scripts/test-admin-api.sh"]
+  program = ["bash", "${path.module}/../../../scripts/test-admin-api.sh"]
 }
 
 data "external" "all" {
-  program = ["bash", "${path.module}/../../scripts/test-kong-http.sh"]
+  program = ["bash", "${path.module}/../../../scripts/test-kong-http.sh"]
 }
 
 output "ui_status" {

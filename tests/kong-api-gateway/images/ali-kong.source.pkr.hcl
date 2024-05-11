@@ -21,7 +21,4 @@ source "docker" "ubuntu" {
   image       = var.docker_image
   commit      = true
   privileged  = true
-  run_command = ["-d", "-i", "-t", "--entrypoint=/bin/sh", "--", "{{.Image}}"]
-
-  changes = ["CMD [\"/kong-init.sh\"]"]
 }
