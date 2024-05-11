@@ -18,7 +18,7 @@ variable "docker_image" {
 }
 
 source "docker" "ubuntu" {
-  image       = var.docker_image
-  commit      = true
-  privileged  = true
+  image      = var.docker_image
+  commit     = true
+  privileged = true
 }

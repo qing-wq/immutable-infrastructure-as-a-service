@@ -28,9 +28,9 @@ resource "docker_image" "kong-gateway-image" {
 }
 
 resource "docker_container" "kong-container" {
-  image   = docker_image.kong-gateway-image.image_id
-  name    = var.docker_container_name
-  command = ["/kong-init.sh"]
+  image      = docker_image.kong-gateway-image.image_id
+  name       = var.docker_container_name
+  command    = ["/kong-init.sh"]
   privileged = true
 
   volumes {
