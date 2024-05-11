@@ -117,7 +117,7 @@ jobs:
       fail-fast: false
       matrix:
         it-tests: [
-          {test-directory: tests/kong-api-gateway/instance},
+          {test-directory: tests/kong-api-gateway/instances},
         ]
     steps:
       - uses: actions/checkout@v3
