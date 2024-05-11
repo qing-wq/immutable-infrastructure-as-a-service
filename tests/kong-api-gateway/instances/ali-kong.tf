@@ -36,9 +36,6 @@ resource "docker_container" "kong-container" {
   image   = docker_image.kong-gateway-image.image_id
   name    = var.docker_container_name
   command = ["${var.image_home_dir}/kong-init.sh"]
-  # entrypoint = ["/bin/sh"]
-
-  # must_run = false
   privileged = true
 
   volumes {
@@ -60,14 +57,6 @@ resource "docker_container" "kong-container" {
     executable = true
   }
 }
-
-# data "external" "ui_status" {
-#   program = ["bash", "${path.module}/../scripts/test-kong-ui.sh"]
-# }
-
-# output "ui_status" {
-#   value = data.external.ui_status.result.ui_status
-# }
 
 terraform {
   required_providers {
