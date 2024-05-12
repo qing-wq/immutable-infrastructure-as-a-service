@@ -20,3 +20,4 @@ hashicorp/**/*.auto.pkrvars.hcl
 .pre-commit-config.yaml
 terraform.tfstate
 terraform.tfstate.backup
+.terraform.lock.hcl

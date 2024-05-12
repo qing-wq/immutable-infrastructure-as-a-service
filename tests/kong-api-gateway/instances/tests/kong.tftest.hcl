@@ -1,11 +1,17 @@
-run "setup_tests" {
+run "ready" {
+}
+
+run "sleep" {
+  # wait for docker-kong ready
   module {
-    source = "./testing/setup"
+    source = "./testing/sleep"
   }
 }
 
 run "test_kong" {
-  # command = apply
+  module {
+    source = "./testing/setup"
+  }
 
   variables {
     docker_image          = "paiondata/iiaas-kong-api-gateway-test:latest"
@@ -13,20 +19,17 @@ run "test_kong" {
   }
 
   assert {
-    condition     = run.setup_tests.ui_status == "200"
-    condition     = run.setup_tests.ui_status == "200"
+    condition     = output.ui_status == "200"
     error_message = "kong ui response error"
   }
 
   assert {
-    condition     = run.setup_tests.admin_api_status == "success"
-    condition     = run.setup_tests.admin_api_status == "success"
+    condition     = output.admin_api_status == "success"
     error_message = "kong admin api response error"
   }
 
   assert {
-    condition     = run.setup_tests.http_port_status == "success"
-    condition     = run.setup_tests.http_port_status == "success"
+    condition     = output.http_port_status == "success"
     error_message = "kong http port response error"
   }
 }

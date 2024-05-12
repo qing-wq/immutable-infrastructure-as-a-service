@@ -13,6 +13,7 @@ data "external" "all" {
 output "ui_status" {
   value = data.external.ui_status.result.ui_status
 }
+
 output "admin_api_status" {
   value = data.external.admin_api_status.result.admin_api_status
 }
