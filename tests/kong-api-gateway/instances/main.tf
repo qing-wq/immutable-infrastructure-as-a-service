@@ -12,15 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-variable "docker_image" {
-  type        = string
-  description = "The name of the image"
-}
-
-variable "docker_container_name" {
-  type        = string
-  description = "The name of the container"
-}
+provider "docker" {}
 
 resource "docker_image" "kong-gateway-image" {
   name         = var.docker_image
@@ -52,16 +44,3 @@ resource "docker_container" "kong-container" {
     executable = true
   }
 }
-
-terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 3.0.1"
-    }
-  }
-
-  required_version = ">= 0.14.5"
-}
-
-provider "docker" {}
