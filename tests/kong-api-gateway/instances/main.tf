@@ -28,7 +28,6 @@ resource "docker_container" "kong-container" {
   volumes {
     container_path = "/var/run/docker.sock"
     host_path      = "/var/run/docker.sock"
-    read_only      = true
   }
 
   # upload file before contain run
@@ -42,5 +41,14 @@ resource "docker_container" "kong-container" {
     file       = "/docker-kong/compose/docker-compose.yml"
     source     = "../docker-compose.yml"
     executable = true
+  }
+}
+
+resource "null_resource" "null" {
+  depends_on = [docker_container.kong-container]
+
+  # sleep to wait docker-kong ready
+  provisioner "local-exec" {
+    command = "sleep 5"
   }
 }

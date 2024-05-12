@@ -17,4 +17,4 @@ set -e
 # limitations under the License.
 
 cd /docker-kong/compose/
-sudo KONG_DATABASE=postgres docker compose --profile database up
+KONG_DATABASE=postgres docker compose --profile database up
