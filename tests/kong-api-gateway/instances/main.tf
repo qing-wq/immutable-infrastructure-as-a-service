@@ -42,12 +42,3 @@ resource "docker_container" "kong-container" {
     executable = true
   }
 }
-
-resource "null_resource" "null" {
-  depends_on = [docker_container.kong-container]
-
-  # sleep to wait docker-kong ready
-  provisioner "local-exec" {
-    command = "sleep 5"
-  }
-}
