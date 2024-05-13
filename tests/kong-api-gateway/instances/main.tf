@@ -42,3 +42,8 @@ resource "docker_container" "kong-container" {
     executable = true
   }
 }
+
+module "sleep" {
+  source     = "./testing/sleep"
+  depends_on = [docker_container.kong-container]
+}
