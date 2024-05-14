@@ -64,7 +64,7 @@ build {
   provisioner "file" {
     source      = var.dist_path
     destination = "${var.image_home_dir}/dist"
-  } 
+  }
 
   post-processor "docker-tag" {
     repository = "paiondata/iiaas-react-test"
@@ -75,6 +75,6 @@ build {
     homeDir          = "${var.image_home_dir}"
     sslCertSource    = "${var.ssl_cert_source}"
     sslCertKeySource = "${var.ssl_cert_key_source}"
-    ReactAppDomain   = "${var.react_app_domain}"
+    ReactAppDomain   = "${var.react_domain}"
   }
 }

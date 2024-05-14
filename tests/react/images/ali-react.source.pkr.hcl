@@ -13,6 +13,6 @@
 # limitations under the License.
 
 source "docker" "ubuntu" {
-  image  = "paiondata/iiaas-aws-react-test-base:latest"
+  image  = "paiondata/iiaas-react-test-base:latest"
   commit = true
 }

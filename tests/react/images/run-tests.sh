@@ -16,17 +16,6 @@ set -e
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-mkdir ../scripts
-cp ../../../hashicorp/react/scripts/* ../scripts
-
-cp ../../../hashicorp/react/images/aws-react.build.pkr.hcl .
-cp ../../../hashicorp/react/images/aws-react.variables.pkr.hcl .
-
 packer init .
-packer validate -var "skip_create_ami=true" .
-packer build -var "skip_create_ami=true" .
-
-# cleanup
-rm -r ../scripts
-rm aws-react.build.pkr.hcl
-rm aws-react.variables.pkr.hcl
+packer validate .
+packer build .
