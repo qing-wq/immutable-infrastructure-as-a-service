@@ -1,16 +1,16 @@
 run "ready" {
 }
 
-run "sleep" {
+run "wait" {
   # wait for docker-kong ready
   module {
-    source = "./testing/sleep"
+    source = "./harness/wait"
   }
 }
 
 run "test_kong" {
   module {
-    source = "./testing/setup"
+    source = "./harness/setup"
   }
 
   variables {
