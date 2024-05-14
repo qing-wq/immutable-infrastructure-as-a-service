@@ -1,0 +1,36 @@
+version: "3.9"
+
+x-kong-config: 
+  KONG_PG_PASSWORD: kong
+
+services:
+  kong-migrations:
+    privileged: true
+    environment:
+      POSTGRES_PASSWORD: kong
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /run/secrets/kong_postgres_password:/run/secrets/kong_postgres_password:ro
+
+  kong-migrations-up:
+    privileged: true
+    environment:
+      POSTGRES_PASSWORD: kong
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /run/secrets/kong_postgres_password:/run/secrets/kong_postgres_password:ro
+
+  kong:
+    privileged: true
+    environment:
+      POSTGRES_PASSWORD: kong 
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /run/secrets/kong_postgres_password:/run/secrets/kong_postgres_password:ro
+
+  db:
+    environment:
+      POSTGRES_PASSWORD: kong
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:rw
+      - /run/secrets/kong_postgres_password:/run/secrets/kong_postgres_password:ro
