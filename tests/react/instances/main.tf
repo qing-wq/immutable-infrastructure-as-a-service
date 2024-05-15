@@ -24,6 +24,11 @@ resource "docker_container" "kong-container" {
   name    = var.docker_container_name
   command = ["/react-tf-init.sh"]
 
+  ports {
+    internal = 3000
+    external = 3000
+  }
+
   # upload file before contain run
   upload {
     file       = "/react-tf-init.sh"

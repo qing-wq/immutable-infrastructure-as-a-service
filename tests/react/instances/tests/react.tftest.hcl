@@ -1,4 +1,4 @@
-run "setup"{
+run "setup" {
   command = apply
 
   variables {
