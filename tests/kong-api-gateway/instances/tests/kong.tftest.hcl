@@ -1,4 +1,10 @@
-run "ready" {
+run "setup" {
+  command = apply
+
+  variables {
+    docker_image          = "paiondata/iiaas-kong-api-gateway-test:latest"
+    docker_container_name = "kong-instance"
+  }
 }
 
 run "wait" {
@@ -11,11 +17,6 @@ run "wait" {
 run "test_kong" {
   module {
     source = "./harness/setup"
-  }
-
-  variables {
-    docker_image          = "paiondata/iiaas-kong-api-gateway-test:latest"
-    docker_container_name = "kong-instance"
   }
 
   assert {
