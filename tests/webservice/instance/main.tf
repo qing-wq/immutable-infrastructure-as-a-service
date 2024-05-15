@@ -14,15 +14,15 @@
 
 provider "docker" {}
 
-resource "docker_image" "react-test-image" {
+resource "docker_image" "ws-test-image" {
   name         = var.docker_image
   keep_locally = true
 }
 
 resource "docker_container" "kong-container" {
-  image   = docker_image.react-test-image.image_id
+  image   = docker_image.ws-test-image.image_id
   name    = var.docker_container_name
-  command = ["/react-tf-init.sh"]
+  command = ["/ws-tf-init.sh"]
 
   ports {
     internal = 8080
@@ -31,8 +31,8 @@ resource "docker_container" "kong-container" {
 
   # upload file before contain run
   upload {
-    file       = "/react-tf-init.sh"
-    source     = "../scripts/react-tf-init.sh"
+    file       = "/ws-tf-init.sh"
+    source     = "../scripts/ws-tf-init.sh"
     executable = true
   }
 }

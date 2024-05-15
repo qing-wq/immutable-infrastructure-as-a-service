@@ -2,18 +2,18 @@ run "setup" {
   command = apply
 
   variables {
-    docker_image          = "paiondata/iiaas-react-test:latest"
-    docker_container_name = "react-instance"
+    docker_image          = "paiondata/iiaas-ws-test:latest"
+    docker_container_name = "ws-instance"
   }
 }
 
-run "test_react" {
+run "test_ws" {
   module {
-    source = "./harness/test-react"
+    source = "./harness/test-ws"
   }
 
   assert {
-    condition     = output.react_status == "200"
-    error_message = "react response error"
+    condition     = output.ws_status == "200"
+    error_message = "webservice response error"
   }
 }
