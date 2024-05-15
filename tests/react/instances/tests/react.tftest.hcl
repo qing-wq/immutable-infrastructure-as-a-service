@@ -6,6 +6,6 @@ run "test_kong" {
 
   assert {
     condition     = output.react_status == "200"
-    error_message = "kong ui response error"
+    error_message = "react response error"
   }
 }
