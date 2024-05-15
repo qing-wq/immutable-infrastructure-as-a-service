@@ -13,6 +13,6 @@
 # limitations under the License.
 
 source "docker" "ubuntu" {
-  image  = "paiondata/iiaas-webservice-test:latest"
+  image  = "paiondata/iiaas-webservice-test-base:latest"
   commit = true
 }
