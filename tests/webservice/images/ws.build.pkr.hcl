@@ -73,7 +73,7 @@ build {
   }
 
   post-processor "docker-tag" {
-    repository = "paiondata/iiaas-kong-api-gateway-test"
+    repository = "paiondata/iiaas-webservice-test"
     tags       = ["latest"]
   }
 }
