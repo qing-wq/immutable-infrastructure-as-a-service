@@ -19,9 +19,11 @@ do
     # Check if the HTTP status is 200
     if [ "$ws_status" == "UP" ]; then
         jq -n --arg ws_status "$ws_status" '{"ws_status": $ws_status}'
-        break
+        exit 1
     else
         sleep $wait_seconds
         ((attempt_num++))
     fi
 done
+
+jq -n --arg ws_status "$ws_status" '{"ws_status": $ws_status}'
