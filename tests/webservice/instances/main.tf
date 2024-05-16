@@ -19,15 +19,14 @@ resource "docker_image" "ws-test-image" {
   keep_locally = true
 }
 
-resource "docker_container" "kong-container" {
-  image    = docker_image.ws-test-image.image_id
-  name     = var.docker_container_name
-  command  = ["/ws-tf-init.sh"]
-  must_run = false
+resource "docker_container" "ws-container" {
+  image   = docker_image.ws-test-image.image_id
+  name    = var.docker_container_name
+  command = ["/ws-tf-init.sh"]
 
   ports {
     internal = 8080
-    external = 8080
+    external = 8000
   }
 
   # upload file before contain run

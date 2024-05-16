@@ -7,7 +7,7 @@ attempt_num=1
 
 # Function to check the HTTP status
 check_status() {
-    status=$(curl -s http://localhost:8080/actuator/health | jq -r .status)
+    status=$(curl -s http://localhost:8000/actuator/health | jq -r .status)
     echo $status
 }
 
@@ -19,11 +19,11 @@ do
     # Check if the HTTP status is 200
     if [ "$ws_status" == "UP" ]; then
         jq -n --arg ws_status "$ws_status" '{"ws_status": $ws_status}'
-        exit 1
+        exit 0
     else
         sleep $wait_seconds
         ((attempt_num++))
     fi
 done
 
-jq -n --arg ws_status "$ws_status" '{"ws_status": $ws_status}'
+jq -n --arg ws_status "DOWN" '{"ws_status": $ws_status}'
