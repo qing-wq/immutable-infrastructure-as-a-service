@@ -57,14 +57,12 @@ build {
   # Load WS WAR file into AMI image
   provisioner "file" {
     source      = var.ws_war_path
-    destination = "${var.image_home_dir}/ROOT.war"
+    destination = "${var.image_home_dir}/ROOT.jar"
   }
 
   provisioner "shell" {
     scripts = [
-      "../scripts/ali-ws-pkr-base-ami-update.sh",
       "../scripts/ali-ws-pkr-setup-jdk-17.sh",
-      "../scripts/ali-ws-pkr-setup-jdk-17-jetty.sh",
       "../scripts/ali-ws-pkr-setup-filebeat.sh"
     ]
     environment_vars = [

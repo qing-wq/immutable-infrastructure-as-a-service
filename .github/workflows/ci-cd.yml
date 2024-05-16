@@ -91,7 +91,7 @@ jobs:
       fail-fast: false
       matrix:
         tests: [
-          {test-directory: tests/kong-api-gateway/images, image-name: iiaas-kong-api-gateway-test},
+          {test-directory: tests/webservice/images, image-name: iiaas-webservice-test-base},
         ]
     steps:
       - uses: actions/checkout@v3
