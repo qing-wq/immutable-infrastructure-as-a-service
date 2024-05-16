@@ -21,12 +21,11 @@ do
         jq -n --arg react_status "$react_status" '{"react_status": $react_status}'
         break
     else
-        if [ $attempt_num -eq $max_attempts ]; then
-            react_status=500
-            jq -n --arg react_status "$react_status" '{"react_status": $react_status}'
-            exit 1
-        fi
         sleep $wait_seconds
         ((attempt_num++))
     fi
 done
+
+react_status=500
+jq -n --arg react_status "$react_status" '{"react_status": $react_status}'
+exit 1
