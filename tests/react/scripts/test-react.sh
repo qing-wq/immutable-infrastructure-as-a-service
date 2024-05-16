@@ -19,7 +19,7 @@ do
     # Check if the HTTP status is 200
     if [ "$react_status" -eq 200 ]; then
         jq -n --arg react_status "$react_status" '{"react_status": $react_status}'
-        break
+        exit 0
     else
         sleep $wait_seconds
         ((attempt_num++))
@@ -28,4 +28,3 @@ done
 
 react_status=500
 jq -n --arg react_status "$react_status" '{"react_status": $react_status}'
-exit 1
