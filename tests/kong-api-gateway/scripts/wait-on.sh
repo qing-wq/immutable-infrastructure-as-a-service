@@ -35,5 +35,4 @@ if [ $attempt_num -gt $max_attempts ]; then
 else
     # Continue with the rest of the script
     echo "Continuing with further operations..."
-    # Add further commands here
 fi
