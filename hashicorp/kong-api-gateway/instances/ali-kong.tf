@@ -70,7 +70,7 @@ data "alicloud_security_groups" "kong-groups" {
 }
 
 data "template_file" "kong-init" {
-  template = file("../scripts/ali-kong-tf-init.sh")
+  template = file("../scripts/kong-tf-init.sh")
   vars = {
     home_dir = var.image_home_dir
   }

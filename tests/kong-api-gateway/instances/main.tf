@@ -22,7 +22,7 @@ resource "docker_image" "kong-gateway-image" {
 resource "docker_container" "kong-container" {
   image   = docker_image.kong-gateway-image.image_id
   name    = var.docker_container_name
-  command = ["/kong-init.sh"]
+  command = ["/kong-init.sh", "/"]
 
   volumes {
     container_path = "/var/run/docker.sock"
@@ -32,7 +32,7 @@ resource "docker_container" "kong-container" {
   # upload file before contain run
   upload {
     file       = "/kong-init.sh"
-    source     = "../scripts/ali-kong-tf-init.sh"
+    source     = "../scripts/kong-tf-init.sh"
     executable = true
   }
 
