@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # if node is not installed, install it
-timeout=${time_out}
-url=${url}
+timeout=$1
+resource=$2
 
 if ! command -v node &> /dev/null
 then

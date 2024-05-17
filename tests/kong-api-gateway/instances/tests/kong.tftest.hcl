@@ -4,6 +4,8 @@ run "setup" {
   variables {
     docker_image          = "paiondata/iiaas-kong-api-gateway-test:latest"
     docker_container_name = "kong-instance"
+    timeout               = "30000"
+    resource             = "http://localhost:8002"
   }
 }
 
