@@ -21,7 +21,7 @@ export TEST_DIR="${PWD}"
 export PACKER_IMAGE_DIR="${PWD}/../../../hashicorp/kong-api-gateway/images"
 
 cd $PACKER_IMAGE_DIR
-cp ali-kong.build.pkr.hcl $TEST_DIR
+cp kong.build.pkr.hcl $TEST_DIR
 
 cd $TEST_DIR
 packer init .
