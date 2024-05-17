@@ -11,6 +11,6 @@ variable "resource" {
 resource "null_resource" "null" {
   # sleep to wait docker-kong ready
   provisioner "local-exec" {
-    command = "bash ../scripts/wait-on.sh ${var.timeout} ${var.resource}"
+    command = "bash test-scripts/wait-on.sh ${var.timeout} ${var.resource}"
   }
 }
