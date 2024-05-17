@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+set -x
 
 # if node is not installed, install it
 timeout=$1
@@ -11,4 +13,4 @@ then
 fi
 
 npm install -g wait-on
-wait-on --timeout $timeout $url
+wait-on --timeout $timeout $resource

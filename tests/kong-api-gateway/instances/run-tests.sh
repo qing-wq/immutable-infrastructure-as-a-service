@@ -22,3 +22,4 @@ cp -r $SCRIPT_PATH ../scripts/
 
 terraform init
 terraform test -verbose
+docker ps -a
