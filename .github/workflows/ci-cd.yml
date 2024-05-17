@@ -106,6 +106,8 @@ jobs:
         with:
           username: paiondata
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Docker Image Tag
+        run: docker tag $(docker images -q | head -n 1) paiondata/${{ matrix.tests.image-name }}:latest
       - name: Push image to DockerHub
         run: docker push paiondata/${{ matrix.tests.image-name }}:latest
 

@@ -66,10 +66,10 @@ build {
     destination = "${var.image_home_dir}/dist"
   }
 
-  post-processor "docker-tag" {
-    repository = "paiondata/iiaas-react-test"
-    tags       = ["latest"]
-  }
+  // post-processor "docker-tag" {
+  //   repository = "paiondata/iiaas-react-test"
+  //   tags       = ["latest"]
+  // }
 
   provisioner "iiaas-react-app-provisioner" {
     homeDir          = "${var.image_home_dir}"
