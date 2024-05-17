@@ -16,6 +16,14 @@ set -e
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+export TEST_DIR="${PWD}"
+
+export PACKER_IMAGE_DIR="${PWD}/../../../hashicorp/kong-api-gateway/images"
+
+cd $PACKER_IMAGE_DIR
+cp ali-kong.build.pkr.hcl $TEST_DIR
+
+cd $TEST_DIR
 packer init .
 packer validate .
 packer build .
