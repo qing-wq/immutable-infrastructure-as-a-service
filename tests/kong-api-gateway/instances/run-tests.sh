@@ -16,10 +16,11 @@ set -e
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-export SCRIPT_PATH="${PWD}/../../../hashicorp/kong-api-gateway/scripts/"
+export SCRIPT_PATH="${PWD}/../../../hashicorp/kong-api-gateway/scripts"
 mkdir -p ../scripts
-cp -r $SCRIPT_PATH ../scripts/
+cp -r $SCRIPT_PATH/* ../scripts/
+ls ../scripts/
 
 terraform init
+terraform validate
 terraform test -verbose
-docker ps -a

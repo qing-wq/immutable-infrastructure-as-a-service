@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e
+set +e
 set -x
 
 # if node is not installed, install it
@@ -14,3 +14,4 @@ fi
 
 npm install -g wait-on
 wait-on --timeout $timeout $resource
+echo "Resource is up"
