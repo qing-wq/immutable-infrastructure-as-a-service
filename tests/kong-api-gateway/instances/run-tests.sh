@@ -18,7 +18,7 @@ set -e
 
 export SCRIPT_PATH="${PWD}/../../../hashicorp/kong-api-gateway/scripts/"
 mkdir -p ../scripts
-cp $SCRIPT_PATH ../scripts/
+cp -r $SCRIPT_PATH ../scripts/
 
-terraform init .
+terraform init
 terraform test -verbose
