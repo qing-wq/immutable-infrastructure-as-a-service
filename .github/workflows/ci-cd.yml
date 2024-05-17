@@ -116,6 +116,8 @@ jobs:
         with:
           username: paiondata
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      - name: Set up Docker Image Tag
+        run: docker tag $(docker images -q | head -n 1) paiondata/${{ matrix.tests.image-name }}:latest
       - name: Push Test image to DockerHub
         run: docker push paiondata/${{ matrix.tests.image-name }}:latest
 
@@ -139,8 +141,7 @@ jobs:
       - name: Terraform Init & Test
         run: |
           cd ${{ matrix.it-tests.test-directory }}
-          terraform init
-          terraform test -verbose
+          ./run-tests.sh
 
   documentation-ci-cd:
     name: Test Documentation Build & Deploy Documentation to GitHub Pages
