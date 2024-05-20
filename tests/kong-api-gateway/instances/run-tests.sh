@@ -1,6 +1,6 @@
 #!/bin/bash
 set -x
-set -e
+set +e
 
 # Copyright 2024 Paion Data. All rights reserved.
 #

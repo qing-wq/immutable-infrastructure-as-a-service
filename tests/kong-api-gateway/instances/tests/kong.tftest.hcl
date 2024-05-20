@@ -10,7 +10,7 @@ run "setup" {
 run "wait" {
   variables {
     timeout  = "30000"
-    resource = "http://localhost:8002"
+    resource = "http://127.0.0.1:8002"
   }
 
   # wait for docker-kong ready
