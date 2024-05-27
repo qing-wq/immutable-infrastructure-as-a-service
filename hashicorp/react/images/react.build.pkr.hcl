@@ -23,6 +23,16 @@ build {
     destination = "${var.image_home_dir}/dist"
   }
 
+  dynamic "provisioner" {
+    for_each = var.env_file_path_list
+    labels   = ["file"]
+
+    content {
+      source      = provisioner.value
+      destination = "${var.image_home_dir}/${basename(provisioner.value)}"
+    }
+  }
+
   provisioner "iiaas-react-app-provisioner" {
     homeDir          = "${var.image_home_dir}"
     sslCertSource    = "${var.ssl_cert_source}"

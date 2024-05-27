@@ -50,6 +50,12 @@ variable "react_dist_path" {
   default     = "dist"
 }
 
+variable "env_file_path_list" {
+  type        = list(string)
+  description = "Optional. The absolute path or relative path to 'hashicorp/react/images' of the environment file for the React app. Config required only when env file exists"
+  default     = []
+}
+
 variable "react_app_domain" {
   type        = string
   description = "The SSL/HTTPS enabled domain serving the React app. For example: mycompany.com"
