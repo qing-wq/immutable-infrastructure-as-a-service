@@ -40,6 +40,7 @@ curl -X POST http://localhost:8001/consumers/paion-consumer/jwt \
    {
      "algorithm": "ES384",
      "rsa_public_key": "'"$PUBLIC_KEY"'",
-     "key": "'"${JwtIss}"'"
+     "key": "'"${jwk_iss}"'"
    }
    '
+
