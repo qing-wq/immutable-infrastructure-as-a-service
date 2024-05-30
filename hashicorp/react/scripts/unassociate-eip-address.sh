@@ -20,7 +20,7 @@ set -e
 # /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/aliyun/aliyun-cli/HEAD/install.sh)"]
 EIP_ID=$1
 # https://next.api.aliyun.com/document/Vpc/2016-04-28/DescribeEipAddresses
-EIP_INFO=$(aliyun vpc DescribeEipAddresses --RegionId 'cn-shenzhen' --AllocationId "$EIP_ID")
+EIP_INFO=$(aliyun vpc DescribeEipAddresses --AllocationId "$EIP_ID")
 # https://next.api.aliyun.com/document/Vpc/2016-04-28/UnassociateEipAddress
 EIP_STATUS=$(echo "$EIP_INFO" | jq -r '.EipAddresses.EipAddress[0].Status')
 if [ "$EIP_STATUS" != "Available" ]; then
